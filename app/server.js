@@ -8,6 +8,8 @@ import Vision from '@hapi/vision';
 import Inert from '@hapi/inert';
 import HapiSwagger from 'hapi-swagger';
 import * as AppConstants from './helper/app_constants';
+import * as FailureConstants from './helper/failure_constants';
+import HttpStatus from 'http-status-codes';
 
 const validate  = (decoded, request, response) => {
     if (!decoded) {
@@ -73,14 +75,27 @@ const init = async () => {
     server.route({
         method: 'GET',
         path: '/',
+        options: {
+            auth: false
+        },
         handler: (request, response) => {
-
             return response.response({data: 'Hello World'});
         }
     });
-
+    
     userRoute(server);
     todoRoute(server);
+
+    server.route({
+        method: '*',
+        path: '/{any*}',
+        options: {
+            auth: false
+        },
+        handler: function (request, response) {
+            return response.response({ errors: FailureConstants.PAGE_NOT_FOUND }).code(HttpStatus.NOT_FOUND);
+        }
+    });
 
     await server.start();
     console.log('Server running on %s', server.info.uri);
