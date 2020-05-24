@@ -9,6 +9,9 @@ export function userRoute(server) {
         method: 'POST',
         path: '/api/users',
         options: {
+            tags: ['api', 'User'],
+            description: 'Create a new user',
+            notes: 'User Register',
             auth: false,
             validate: {
                 payload: createUserValidator,
@@ -24,6 +27,9 @@ export function userRoute(server) {
         method: 'POST',
         path: '/api/users/login',
         options: {
+            tags: ['api', 'User'],
+            description: 'Authenticates the user with the given email and password',
+            notes: 'User Login',
             auth: false,
             validate: {
                 payload: loginUserValidator,
@@ -39,6 +45,14 @@ export function userRoute(server) {
         method: 'PUT',
         path: '/api/users/me',
         options: {
+            tags: ['api', 'User'],
+            description: 'Update user details',
+            notes: 'User Update',
+            plugins: {
+                'hapi-swagger': {
+                    security: [{ apiKey: [] }]
+                }
+            },
             validate: {
                 payload: updateUserValidator,
                 failAction: (request, response, err) => {
@@ -52,6 +66,16 @@ export function userRoute(server) {
     server.route({
         method: 'GET',
         path: '/api/users/me',
+        options: {
+            tags: ['api', 'User'],
+            description: 'Get user details',
+            notes: 'User Get',
+            plugins: {
+                'hapi-swagger': {
+                    security: [{ apiKey: [] }]
+                }
+            },
+        },
         handler: UserController.getUser
     });
 

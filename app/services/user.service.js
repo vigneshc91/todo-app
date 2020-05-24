@@ -1,6 +1,7 @@
 import HttpStatus from 'http-status-codes';
 import { UserModel, Status } from '../models/user.model';
 import * as FailureConstants from '../helper/failure_constants';
+import * as AppConstants from '../helper/app_constants';
 import { hash, verify } from 'argon2';
 import jwt from 'jsonwebtoken';
 
@@ -146,7 +147,7 @@ export class UserService {
                 data: {
                     email: user.email
                 }
-            }, process.env.JWT_SECRET, { expiresIn: `${process.env.JWT_EXPIRES}h` });
+            }, process.env.JWT_SECRET, { algorithm: AppConstants.JWT_ALGORITHM ,expiresIn: `${process.env.JWT_EXPIRES}h` });
 
             user = user.toObject();
             delete user.password;
