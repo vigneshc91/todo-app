@@ -1,0 +1,39 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "TODO REST API",
+  "main": "bootstrap.js",
+  "scripts": {
+    "start": "node bootstrap.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "todo",
+    "hapijs",
+    "nodejs",
+    "todo app"
+  ],
+  "author": "Vignesh Chidambaram",
+  "license": "ISC",
+  "engines": {
+      "node": ">=12.0.0",
+      "npm": ">=6.0.0"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/vigneshc91/todo-app"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "@hapi/joi": "^17.1.1",
+    "argon2": "^0.26.2",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "dotenv": "^8.2.0",
+    "hapi-auth-jwt2": "^10.1.0",
+    "http-status-codes": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.26.0",
+    "mongoose": "^5.9.15"
+  }
+}
