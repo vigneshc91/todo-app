@@ -40,9 +40,9 @@ const init = async () => {
         grouping: 'tags',
         securityDefinitions: {
             apiKey: {
-              in: "header",
-              name: "Authorization",
-              type: "apiKey"
+              in: 'header',
+              name: 'Authorization',
+              type: 'apiKey'
             }
         }
     };
