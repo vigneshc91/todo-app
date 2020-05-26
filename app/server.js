@@ -49,7 +49,7 @@ const init = async () => {
 
     let mongooseOptions = {
         useNewUrlParser: true,
-        dbName: process.env.MONGODB_NAME
+        useUnifiedTopology: true
     }
 
     if (process.env.MONGODB_USERNAME) {
@@ -60,7 +60,7 @@ const init = async () => {
         mongooseOptions.pass = process.env.MONGODB_PASSWORD;
     }
 
-    await mongoose.connect(process.env.MONGODB_HOST, mongooseOptions)
+    await mongoose.connect(`${process.env.MONGODB_HOST}${process.env.MONGODB_NAME}`, mongooseOptions)
 
     await server.register([
         Jwt,
