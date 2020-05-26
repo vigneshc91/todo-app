@@ -49,7 +49,6 @@ const init = async () => {
 
     let mongooseOptions = {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
         dbName: process.env.MONGODB_NAME
     }
 
