@@ -61,7 +61,7 @@ const init = async () => {
         mongooseOptions.pass = process.env.MONGODB_PASSWORD;
     }
 
-    await mongoose.connect(process.env.MONGODB_HOST, )
+    await mongoose.connect(process.env.MONGODB_HOST, mongooseOptions)
 
     await server.register([
         Jwt,
