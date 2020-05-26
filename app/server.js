@@ -47,11 +47,21 @@ const init = async () => {
         }
     };
 
-    await mongoose.connect(process.env.MONGODB_HOST, {
+    let mongooseOptions = {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         dbName: process.env.MONGODB_NAME
-    })
+    }
+
+    if (process.env.MONGODB_USERNAME) {
+        mongooseOptions.user = process.env.MONGODB_USERNAME;
+    }
+
+    if (process.env.MONGODB_PASSWORD) {
+        mongooseOptions.pass = process.env.MONGODB_PASSWORD;
+    }
+
+    await mongoose.connect(process.env.MONGODB_HOST, )
 
     await server.register([
         Jwt,
